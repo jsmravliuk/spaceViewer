@@ -1,0 +1,30 @@
+<mat-toolbar color="primary"> Space Viewer </mat-toolbar>
+<mat-form-field appearance="fill">
+    <mat-label>Select robot</mat-label>
+    <mat-select>
+        <mat-option *ngFor="let rover of rovers" [value]="rover.name">
+            {{ rover.name }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Select camera</mat-label>
+    <mat-select>
+        <mat-option *ngFor="let camera of cameras" [value]="camera.name">
+            {{ camera.name }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Select sol</mat-label>
+    <mat-select>
+        <mat-option *ngFor="let sol of sols" [value]="sol.name">
+            {{ sol.name }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<div class="content" fxLayout="row wrap" fxLayoutGap="grid">
+    <app-list-item fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let card of spaceCards; trackBy: identify" [spaceCard]="card"></app-list-item>
+    <button mat-fab color="accent" (click)="getThePictures(); optionsSelected = !optionsSelected" *ngIf="!optionsSelected">Find...</button>
+    <button mat-fab color="accent" (click)="getMorePictures()" *ngIf="optionsSelected">More...</button>
+</div>
